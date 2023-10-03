@@ -28,7 +28,7 @@ class MainActivity : AppCompatActivity() {
 
                 val intent = Intent(this@MainActivity, DisplayActivity::class.java)
 
-                intent.putExtra("SELECTED_TEXT_SIZE", selectedTextSize)
+                intent.putExtra("SELECTED_TEXT_SIZE", selectedTextSize.toFloat())
 
                 startActivity(intent)
 
@@ -48,11 +48,10 @@ class TextSizeAdapter (private val textSizes: Array<Int>,  val callback: (Int)->
     // TODO Step 1: Complete onClickListener to return selected number
     inner class TextSizeViewHolder(val textView: TextView) : RecyclerView.ViewHolder (textView) {
         init {
-
             textView.setOnClickListener {
-                val temp = textView.text.toString().toInt()
-
-                callback(temp) }
+                val temp = textSizes[adapterPosition]
+                callback(temp)
+            }
         }
     }
 
